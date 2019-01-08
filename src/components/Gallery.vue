@@ -1,18 +1,16 @@
 <template>
-  <div class="header">
-    <div id="galleryInfo">
-      <section>
-        <div 
-          v-for='record in galleryInfo' 
-          :key='record.id'
-        >
-          <img
-            class='galleryItem'
-            :src='record.primaryimageurl'
-          />
-        </div>
-      </section>
-    </div>
+  <div id="galleryInfo">
+    <section class='record-container'>
+      <div 
+        v-for='record in galleryInfo' 
+        :key='record.id'
+      >
+        <img
+          class='galleryItem'
+          :src='record.primaryimageurl'
+        />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -42,11 +40,19 @@ export default {
       .finally(() => this.loading = false)
   }
 }
-
 </script>
 
 <style scoped>
-.galleryItem {
-  width: 300px;
+
+.record-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -80px;
 }
+
+.galleryItem {
+  height: 400px;
+  margin: 10px;
+}
+
 </style>
