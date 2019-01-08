@@ -23,10 +23,13 @@ export default {
 <style>
 #app {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #logo {
-  margin-top: -120px;
+  margin-top: -100px;
+  width: 400px;
 }
+
 </style>
