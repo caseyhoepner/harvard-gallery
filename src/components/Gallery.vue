@@ -1,16 +1,26 @@
 <template>
   <div class="header">
-  <div id="galleryInfo">
-    
-  </div>
+    <div id="galleryInfo">
+      <section>
+        <div 
+          v-for='record in galleryInfo' 
+          :key='record.id'
+        >
+          <img
+            class='galleryItem'
+            :src='record.primaryimageurl'
+          />
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
-const axios = require('axios');
+const axios = require('axios')
 
-new Vue({
-  el: '#galleryInfo',
+export default {
+  name: 'Gallery',
   data () {
     return {
       galleryInfo: null,
@@ -22,7 +32,8 @@ new Vue({
     axios
       .get('https://api.harvardartmuseums.org/object?apikey=0b7812a0-12e5-11e9-b96e-b96134bf93ea')
       .then(response => {
-        this.galleryIinfo = response.records
+        const recordsWithPic = response.data.records.filter(record => record.primaryimageurl !== null)
+        this.galleryInfo = recordsWithPic;
       })
       .catch(error => {
         console.log(error)
@@ -30,22 +41,12 @@ new Vue({
       })
       .finally(() => this.loading = false)
   }
-})
+}
+
 </script>
 
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.galleryItem {
+  width: 300px;
 }
 </style>

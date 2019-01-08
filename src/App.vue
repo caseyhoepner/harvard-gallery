@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <img 
+    <img
       id='logo'
-      src="./assets/logo.png" 
+      src="./assets/logo.png"
       alt='Harvard Art Museum Logo'
     >
     <Gallery/>
