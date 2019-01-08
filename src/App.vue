@@ -24,10 +24,12 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 #logo {
-  margin-top: -120px;
-  width:400px;
+  margin-top: -100px;
+  width: 400px;
 }
+
 </style>
