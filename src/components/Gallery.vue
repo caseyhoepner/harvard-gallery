@@ -1,66 +1,65 @@
 <template>
   <div id="galleryInfo">
     <ul class='nav'>
-
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Photographs')"
       >Photographs
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Sculpture')"
-        >Sculpture
+        >Sculptures
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Medals and Medallions')"
         >Medals and Medallions
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Prints')"
         >Prints
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Paintings')"
         >Paintings
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Coins')"
         >Coins
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Manuscripts')"
         >Manuscripts
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Books')"
         >Books
       </button>
 
-      <button 
-        class='nav-btn' 
+      <button
+        class='nav-btn'
         v-on:click="filterRecords('Drawings')"
         >Drawings
       </button>
-
     </ul>
+
     <section class='record-container'>
-      <div 
+      <div
         v-if='filtered'
-        v-for='record in filteredInfo' 
+        v-for='record in filteredInfo'
         :key='record.id'
       >
         <img
@@ -68,9 +67,9 @@
           :src='record.primaryimageurl'
         />
       </div>
-      <div 
+      <div
         v-if='!filtered'
-        v-for='record in galleryInfo' 
+        v-for='record in galleryInfo'
         :key='record.id'
       >
         <img
@@ -91,32 +90,28 @@ export default {
     return {
       galleryInfo: [],
       filteredInfo: [],
-      filtered: false,
-      loading: true,
-      errored: false
+      filtered: false
     }
   },
   methods: {
-    filterRecords: function(filter) {
+    filterRecords: function (filter) {
       const filteredRecords = this.galleryInfo.filter(record => record.classification === filter)
-      this.filteredInfo = filteredRecords;
-      this.filtered = true;
+      this.filteredInfo = filteredRecords
+      this.filtered = true
     }
   },
   mounted () {
-    for(let i = 1; i < 10; i++) {
+    for (let i = 1; i < 20; i++) {
       axios
         .get(`https://api.harvardartmuseums.org/object?size=100&page=${i}&apikey=0b7812a0-12e5-11e9-b96e-b96134bf93ea`)
         .then(response => {
           const recordsWithPic = response.data.records.filter(record => record.primaryimageurl)
-          this.galleryInfo.push(...recordsWithPic);
+          this.galleryInfo.push(...recordsWithPic)
         })
         .catch(error => {
           console.log(error)
-          this.errored = true
         })
-        .finally(() => this.loading = false)
-      }
+    }
   }
 }
 </script>
@@ -131,9 +126,9 @@ export default {
 
 .nav-btn {
   font-size: 1.1rem;
-  margin: 0 15px;
+  margin: 0 5px;
   border: none;
-  padding: 0 0 5px 0;
+  padding: 10px;
   border-bottom: 2px solid white;
 
 }
@@ -141,6 +136,12 @@ export default {
 .nav-btn:hover {
   cursor: pointer;
   border-bottom: 2px solid maroon;
+}
+
+.nav-btn:focus {
+  outline: none;
+  background: maroon;
+  color: white;
 }
 
 .record-container {
