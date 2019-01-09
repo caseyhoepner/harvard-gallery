@@ -1,6 +1,6 @@
 # harvard-gallery
 
-This is a single-page application built with Vue.js. Select a classification button to view items from the Harvard Art museum. 
+This is a single-page gallery application built with Vue.js using the Harvard Art Museum API. Select a classification button to view items from the museum. 
 
 ### Build Setup
 
