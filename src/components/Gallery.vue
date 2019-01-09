@@ -11,7 +11,7 @@
       <button 
         class='nav-btn' 
         v-on:click="filterRecords('Sculpture')"
-        >Sculpture
+        >Sculptures
       </button>
 
       <button 
@@ -104,7 +104,7 @@ export default {
     }
   },
   mounted () {
-    for(let i = 1; i < 10; i++) {
+    for(let i = 1; i < 20; i++) {
       axios
         .get(`https://api.harvardartmuseums.org/object?size=100&page=${i}&apikey=0b7812a0-12e5-11e9-b96e-b96134bf93ea`)
         .then(response => {
@@ -131,9 +131,9 @@ export default {
 
 .nav-btn {
   font-size: 1.1rem;
-  margin: 0 15px;
+  margin: 0 5px;
   border: none;
-  padding: 0 0 5px 0;
+  padding: 10px;
   border-bottom: 2px solid white;
 
 }
@@ -141,6 +141,12 @@ export default {
 .nav-btn:hover {
   cursor: pointer;
   border-bottom: 2px solid maroon;
+}
+
+.nav-btn:focus {
+  outline: none;
+  background: maroon;
+  color: white;
 }
 
 .record-container {
